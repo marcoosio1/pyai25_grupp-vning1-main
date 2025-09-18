@@ -1,5 +1,11 @@
 # Student APP Pymasters
 
+Uppdelning av uppgifter:
+- Marcus Main
+- Pontus Student
+- Osman Event
+- Sergey Todo
+
 ## Intro
 Det här repo:t är tänkt att agera som ett skelett för ett grupparbet i kursen Grundläggande programmering i Python. Antal tilltänkta gruppmedlemmar är max 4 men går bra med färre. 
 
