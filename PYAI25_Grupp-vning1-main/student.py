@@ -59,7 +59,7 @@ def remove_course1(student_id, course):
     if student_id not in students:
         return 1
     
-    if course not in students[student_id["courses"]] or (course not in course_list):
+    if course not in students[student_id["courses"]]: #or (course not in course_list):
         return 2
     
     else:
@@ -270,11 +270,24 @@ def show_all_students():
             else:
                 print("No courses registred.")
             print("~" * 30)
-            input("Press enter to continue.")
+    input("Press enter to continue.")
 
 ########################################################################################################
 
 
+def remove_student():
 
+    try:
+
+        student_id = int(input("Student id: "))
+
+        if student_id in students:
+            students[student_id].remove(student_id)
+            print(f"Student {student_id} removed.")
+        else:
+            print("Student not registred")
+
+    except ValueError:
+        print("Invalid input, only digits in id-number")
 
 
