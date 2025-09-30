@@ -128,7 +128,7 @@ def read_students():
 ##############################################################################################################
 
 def create_new_student():
-    
+
     try:
 
         student_id = int(input("Student id: "))
@@ -263,13 +263,6 @@ def create_new_student():
         input("Press enter to continue.")
 
 
-############################################ Save students ############################################################
-
-    if val == "6":
-
-        save_students()
-        print("Data saved, have a nice day.")
-        break
 
 
 
