@@ -1,6 +1,6 @@
 # Hämtar funktionerna från student
 from student import create_new_student, get_student_age, save_students, read_students, show_all_students
-from student import get_student_courses, get_student_name, add_course, remove_student, show_student, remove_course
+from student import get_student_courses, get_student_name, add_course, show_student, remove_course , remove_student
 # Hämtar funktionerna från todo
 from todo import add_todo, get_most_urgent, get_first_todo, save_todos
 from todo import delete_todo, get_all_todos_string, read_todos
@@ -10,11 +10,13 @@ from event import get_participants, save_events, read_events
 
 
 def setup():
+
     read_events()
     read_students()
     read_todos()
 
 def save():
+
     save_events()
     save_students()
     save_todos()
@@ -29,12 +31,12 @@ def main_menu():
     print("Welcome to the School Administration!")
     
     while True:
-        print(
-        "1. Student Menu\n"
-        "2. Event Menu\n"
-        "3. ToDo Menu\n"
-        "4. Quit\n"
-        )
+        print("Main Menu\n"
+              "1. Student Menu\n"
+              "2. Event Menu\n"
+              "3. ToDo Menu\n"
+              "4. Quit\n")
+        
         choice = input("Make a choice:\n>> ")
         print("")
 
@@ -45,7 +47,7 @@ def main_menu():
             event_menu()
 
         elif choice == "3":
-            main_menu()
+            todo_menu()
 
         elif choice == "4":
             print("Goodbye User!")
