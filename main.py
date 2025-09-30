@@ -1,6 +1,6 @@
 # Hämtar funktionerna från student
-from student import create_new_student, get_student_age, save_students, read_students, show_all_students
-from student import get_student_courses, get_student_name, add_course, show_student, remove_course , remove_student
+from student import create_new_student, save_students, read_students, show_all_students
+from student import add_course, show_student, remove_course , remove_student
 # Hämtar funktionerna från todo
 from todo import add_todo, get_most_urgent, get_first_todo, save_todos
 from todo import delete_todo, get_all_todos_string, read_todos
