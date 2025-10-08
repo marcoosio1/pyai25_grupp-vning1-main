@@ -31,7 +31,7 @@ def add_todo(student_id, priority, todo):
         return None
     if student_id not in todos:
         todos[student_id] = []
-    todos[student_id].append((priority, todo))
+    todos[student_id].append([priority, todo])
 
     
 
@@ -42,7 +42,16 @@ def get_most_urgent(student_id):
     ret --> str eller None
     """
     # Vi letar efter todos med högsta prioritet, vi tar första med högsta värde!
-    pass
+
+    if student_id not in todos or not todos[student_id]:
+        return None
+    
+    #priority max
+    for urgent in todos[student_id]:
+        if urgent == max(todos[student_id]):
+            most_urgent = urgent[1]
+    return most_urgent
+
 
 def get_first_todo(student_id):
     """
@@ -64,7 +73,15 @@ def delete_todo(student_id, todo):
     ret --> bool
     """    
     # Kom ihåg att vi måste hitta vår todo först innan vi kan ta bort den!
-    pass
+    if student_id not in todos:
+        return None
+    
+    for todo_item in todos[student_id]:
+        if todo_item[1] == todo:
+            todos[student_id].remove(todo_item)
+            return True
+        
+    return False
 
 def get_all_todos_string(student_id):
     """
@@ -77,29 +94,40 @@ def get_all_todos_string(student_id):
     # 0 -> Städa rummet
     # 2 -> Ringa mormor
     # 1 -> Gå ut med hund
-    pass
+    if student_id not in todos:
+        return None
+    todos_string = ""
+    for todo_item in todos[student_id]:
+        todos_string = todos_string + str(todo_item[0]) + " -> " + str(todo_item[1]) + "\n"
+    return todos_string
 
 def save_todos():
     """
     ret --> None
     """
     # Här ska vi spara dictionary med todos till fil
-    with open("todos.json", "w") as f:
-        json.dump(todos, f)
-        print("Save successful!")
+    if todos == {}:
+        return None
+    else:
+        with open("todos.json", "w") as f:
+            json.dump(todos, f)
+        print("Todos saved")
 
 def read_todos():
     """
     ret --> None
     """
     # Här ska vi läsa in sparade todos och spara i vår dictionary "todos"
-    if os.path.exists("todos.json"):
-        with open("todos.json", "r") as f:
-            todos.clear()
-            todos.update(json.load(f))
-            print("Load successful!")
+    global todos
+    if not os.path.exists("todos.json"):
+        return None
     else:
-        print("No file found!")
+        with open("todos.json", "r") as f:
+            todos = json.load(f)
+            #convert to dict into int using pop
+            for key in list(todos.keys()):
+                todos[int(key)] = todos.pop(key)
+            print("Todos loaded")
 
 def main():
     print("Todo Menu")
@@ -116,27 +144,38 @@ def main():
         choice = input("Choose: ")
         
         if choice == "1":
-            student_id = input("Student id: ")
+            student_id = input("Student ID: ")
             student_id = int(student_id)
             priority = input("Priority: ")
             priority = int(priority)
             todo = input("Todo: ")
             add_todo(student_id, priority, todo)
         elif choice == "2":
-            pass
+             student_id = input("Student ID: ")
+             student_id = int(student_id)
+             print(get_most_urgent(student_id))
         elif choice == "3":
-            student_id = input("Student id: ")
+            student_id = input("Student ID: ")
+            student_id = int(student_id)
             print(get_first_todo(student_id))
         elif choice == "4":
-            pass
+            student_id = input("Student ID: ")
+            student_id = int(student_id)
+            todo = input("Todo: ")
+            print(delete_todo(student_id, todo))
+            print(get_all_todos_string(student_id))
         elif choice == "5":
-            pass
+            student_id = input("Student ID: ")
+            student_id = int(student_id)
+            print(get_all_todos_string(student_id))
         elif choice == "6":
             save_todos()
         elif choice == "7":
             read_todos()
         elif choice == "0":
             break
+        else: 
+            print("Choice invalid.")
 
 
 
